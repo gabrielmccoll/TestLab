@@ -8,8 +8,8 @@ Azure account (for the Azure part)
 
 Broad Outline
 
-Powershell create initial domain controller and domain - DC1
-walk through gui manually
-Powershell create second dc and windows deployment server - DC2
-walk through gui manually
-Setup WDS with config files and isos for any further server creation
+Powershell create initial domain controller and domain - DC1  
+walk through gui manually  
+Powershell create second dc and windows deployment server - DC2  
+walk through gui manually  
+Setup WDS with config files and isos for any further server creation  
