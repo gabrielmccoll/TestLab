@@ -1,10 +1,10 @@
 # TestLab
 set of tools to make testlabs for local or in Azure
 
-Requirements
-Hyper V /Vmware workstation (initial scripts will focus on hyperv)
-Windows Server 2012 r2 or 2016 datacentre (trial is fine)
-Azure account (for the Azure part)
+Requirements  
+Hyper V /Vmware workstation (initial scripts will focus on hyperv)  
+Windows Server 2012 r2 or 2016 datacentre (trial is fine)  
+Azure account (for the Azure part)  
 
 Broad Outline
 
