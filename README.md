@@ -14,7 +14,10 @@ walk through gui manually
 Setup WDS with config files and isos for any further server creation 
 
 Powershell create second dc , dns,dhcp  - DC2  
-WDS should take care of it
+WDS should take care of it  
  
-Third server is File / DSC pull Server/ Cert Services - Utility
+Third server is File / DSC pull Server/ Cert Services - Utility  
 setup this via Powershell DSC
+
+4rth Server RRAS  - Router   
+setup via DSC and WDS
