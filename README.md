@@ -8,8 +8,13 @@ Azure account (for the Azure part)
 
 Broad Outline
 
-Powershell create initial domain controller and domain - DC1  
-walk through gui manually  
-Powershell create second dc and windows deployment server - DC2  
-walk through gui manually  
-Setup WDS with config files and isos for any further server creation  
+
+Powershell create initial domain controller, Forest, dns,dhcp and windows deployment server- DC1  
+walk through gui manually    
+Setup WDS with config files and isos for any further server creation 
+
+Powershell create second dc , dns,dhcp  - DC2  
+WDS should take care of it
+ 
+Third server is File / DSC pull Server/ Cert Services - Utility
+setup this via Powershell DSC
