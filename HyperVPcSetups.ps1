@@ -47,13 +47,15 @@ $vmdest = $VMandVHDlocation #where keeping the vm
 $vhdsize = 80GB 
 $vmmemory = 2GB #startup memory, it will use dynamic memory anyway
 $vmprocessors = 2 #how many processors you want
+$bootdevice = "CD"
 
 #create the vhd
 New-VHD -Dynamic -Path $vhddest -SizeBytes $vhdsize -ComputerName $Hypervisor
 
 #create the vm, set the number of processors, the ISO to the DVD/CD drive, start all inegration services then start the VM
-New-VM -Name $vmname -MemoryStartupBytes $vmmemory -Path $vmdest -BootDevice "CD" -VHDPath $vhddest -SwitchName $SwitchName -ComputerName $Hypervisor
+New-VM -Name $vmname -MemoryStartupBytes $vmmemory -Path $vmdest -BootDevice $bootdevice -VHDPath $vhddest -SwitchName $SwitchName -ComputerName $Hypervisor
 Set-VM -VMName $vmname -ComputerName $Hypervisor -ProcessorCount $vmprocessors
 Set-VMDvdDrive -VMName $vmname -Path $ServerOSIso -ComputerName $Hypervisor
 Get-VMIntegrationService -ComputerName $Hypervisor -VMName $vmname | Enable-VMIntegrationService
 Start-VM -VMName $vmname -ComputerName $Hypervisor
+
