@@ -2,16 +2,18 @@
 #REMEMBER YOU'LL NEED TO START YOUR IDE AS ADMIN 
 
 $Hypervisor = "localhost" #change this if you're setting it up on a remote PC
+Set-VMhost -EnableEnhancedSessionMode $TRUE 
+
 
 #https://technet.microsoft.com/en-us/itpro/powershell/windows/hyper-v/new-vmswitch
 #CREATE THE VIRTUAL SWITCH
 $SwitchName = "External" #change these if you like.
 #switch type (external,private,internal isn't needed as we are using the netadaptername parameter which auto makes it External
 $SwitchNote = "created by script"
-$networkcardtobind = "Ethernet 2" #get this by running get-netadapter and using the name of the one you want
+$networkcardtobind = "Wifi" #get this by running get-netadapter and using the name of the one you want
 
 #make new switch
-#New-VMSwitch -ComputerName $Hypervisor -Name $SwitchName -NetAdapterName $networkcardtobind -AllowManagementOS $true -note $SwitchNote
+New-VMSwitch -ComputerName $Hypervisor -Name $SwitchName -NetAdapterName $networkcardtobind -AllowManagementOS $true -note $SwitchNote
 
 ##Switch is now created for using with the new VMs
 
@@ -21,8 +23,8 @@ $networkcardtobind = "Ethernet 2" #get this by running get-netadapter and using 
 $Domainname = "Testlandia.com"
 $DomainPre = "TL-"
 $OnPremSuf = "-OnPr"
-$ServerOSIso =  "C:\ISO\Server2012R2.ISO" #location of your Server2016 (or 2012R2)iso
-$VMandVHDlocation = "U:\VirtualMachines\" #where you're going to store the VMsand their Harddisks
+$ServerOSIso =  "C:\ISOs\Server2012rt26month.ISO" #location of your Server2016 (or 2012R2)iso
+$VMandVHDlocation = "C:\VirtualMachines\" #where you're going to store the VMsand their Harddisks
 $generation = "1" #this is to ensure compatability with Azure
 #example PC name TL-DC1-OnPr the suffix is to differentiate from on-premises/local and cloud hosted
 
@@ -40,6 +42,14 @@ $Router = $DomainPre + "Router" + $OnPremSuf #RRAS
 #Create DC1
 #create the vhd then the vm 
 $vmname = $dc1
-$vhdtype = "dynamic"
-$vhddest = $VMandVHDlocation + "$vmname" + "\VHD\$vmname.vhd"
-
+$vhddest = $VMandVHDlocation + "$vmname\" + "VHD\$vmname.vhd"
+$vmdest = $VMandVHDlocation
+$vhdsize = 80GB
+$vmmemory = 2GB
+$vmprocessors = 2
+New-VHD -Dynamic -Path $vhddest -SizeBytes $vhdsize -ComputerName $Hypervisor
+New-VM -Name $vmname -MemoryStartupBytes $vmmemory -Path $vmdest -BootDevice "CD" -VHDPath $vhddest -SwitchName $SwitchName -ComputerName $Hypervisor
+Set-VM -VMName $vmname -ComputerName $Hypervisor -ProcessorCount $vmprocessors
+Set-VMDvdDrive -VMName $vmname -Path $ServerOSIso -ComputerName $Hypervisor
+Get-VMIntegrationService -ComputerName $Hypervisor -VMName $vmname | Enable-VMIntegrationService
+Start-VM -VMName $vmname -ComputerName $Hypervisor
