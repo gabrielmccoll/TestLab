@@ -1,13 +1,3 @@
-<!--*************************************************
-Windows Server 2012/R2 Answer File Generator
-Created using Windows AFG found at:
-http://windowsafg.no-ip.org
-
-Installation Notes
-Location: EN-US
-Notes: Enter your comments here...
-**************************************************-->
-
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
 <settings pass="windowsPE">
