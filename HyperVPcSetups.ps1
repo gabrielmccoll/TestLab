@@ -14,7 +14,7 @@ $networkcardtobind = "Ethernet 2" #get this by running get-netadapter and using 
 
 New-VMSwitch -ComputerName $Hypervisor -Name $SwitchName -NetAdapterName $networkcardtobind -AllowManagementOS $true -note $SwitchNote
 
-#
+
 #Pick the domain name, and then what your VMs will be prefixed and suffixed with
 $Domainname = "Testlandia.com"
 $DomainPre = "TL-"
