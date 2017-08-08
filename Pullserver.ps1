@@ -7,3 +7,4 @@ Register-PSrepository -default #thi should error in most cases saying it already
 
 #you'll need to be running this as admin to install a module
 Install-Module -Name xPSDesiredStateConfiguration -Verbose -Force -AllowClobber
+
