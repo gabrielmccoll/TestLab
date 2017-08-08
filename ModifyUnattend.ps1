@@ -19,6 +19,8 @@ Because you're selecting the node, then you're editing a property of the node th
 
 ($xmlcomponent |where {$_.Productkey -gt 1}).Productkey = "444"  THIS ALSO WORKS
 
+$xmlcomponent.getelementsbytagname("ProductKey").innertext = "333" THIS WORKS, clean
+
 
 
 #>
