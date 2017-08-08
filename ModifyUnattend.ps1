@@ -15,9 +15,6 @@ $newfile = "C:\Users\breau\TestLab\Autounattendtest2.xml"
 $xml = [xml](Get-Content $path)
 $xmlcomponent = $xml.unattend.settings.component
 
-$xmlcomponent.GetAttribute("Autologon")
-$Admin = $xml.unattend.settings.component.autologon.username #Admin account
-$adminpass = $xml.unattend.settings.component.autologon.password #password for admin
 
 $xmlcomponent.item(8).autologon.username = $Administrator
 $xmlcomponent.item(8).autologon.password.value = "$Password"
