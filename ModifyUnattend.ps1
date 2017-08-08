@@ -15,6 +15,12 @@ This one below  works as it has a ProductKey Parameter you can set even though s
 ($xml.unattend.settings.selectnodes("*")|where {$_.ProductKey -gt 1}) |Get-Member
 Comes back as TypeName: System.Xml.XmlElement#urn:schemas-microsoft-com:unattend#component
 Because you're selecting the node, then you're editing a property of the node this works. 
+
+
+($xmlcomponent |where {$_.Productkey -gt 1}).Productkey = "444"  THIS ALSO WORKS
+
+
+
 #>
 
 
@@ -40,3 +46,6 @@ $xmlcomponent.item(7).ProductKey = $ProductKey
 $xmlcomponent.item(7).ComputerName = $ComputerName
 
 $xml.Save($newfile)
+
+
+$xmlcomponent.item["RegisteredOwner"]
