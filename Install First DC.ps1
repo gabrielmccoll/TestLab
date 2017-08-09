@@ -1,5 +1,5 @@
 Install-WindowsFeature dns,dhcp,ad-domain-services -IncludeAllSubFeature -IncludeManagementTools -Restart
-
+#### TODO - set a static IP
 #https://technet.microsoft.com/en-us/library/hh974720(v=wps.630).aspx
 
 #To create seccure password for recovery
