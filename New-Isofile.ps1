@@ -10,13 +10,20 @@ function New-IsoFile  
     The New-IsoFile cmdlet creates a new .iso file containing content from chosen folders  
    .Example  
     New-IsoFile "c:\tools","c:Downloads\utils"  
-    This command creates a .iso file in $env:temp folder (default location) that contains c:\tools and c:\downloads\utils folders. The folders themselves are included at the root of the .iso image.  
+    This command creates a .iso file in $env:temp folder (default location) that contains 
+    c:\tools and c:\downloads\utils folders. The folders themselves are included at the 
+    root of the .iso image.  
    .Example 
     New-IsoFile -FromClipboard -Verbose 
     Before running this command, select and copy (Ctrl-C) files/folders in Explorer first.  
    .Example  
-    dir c:\WinPE | New-IsoFile -Path c:\temp\WinPE.iso -BootFile "${env:ProgramFiles(x86)}\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\efisys.bin" -Media DVDPLUSR -Title "WinPE" 
-    This command creates a bootable .iso file containing the content from c:\WinPE folder, but the folder itself isn't included. Boot file etfsboot.com can be found in Windows ADK. Refer to IMAPI_MEDIA_PHYSICAL_TYPE enumeration for possible media types: http://msdn.microsoft.com/en-us/library/windows/desktop/aa366217(v=vs.85).aspx  
+    dir c:\WinPE | New-IsoFile -Path c:\temp\WinPE.iso 
+    -BootFile "${env:ProgramFiles(x86)}\Windows Kits\10\Assessment and Deployment Kit\ ~~~
+    ~Deployment Tools\amd64\Oscdimg\efisys.bin" -Media DVDPLUSR -Title "WinPE" 
+    This command creates a bootable .iso file containing the content from c:\WinPE folder,
+     but the folder itself isn't included. Boot file etfsboot.com can be found in Windows ADK. 
+    Refer to IMAPI_MEDIA_PHYSICAL_TYPE enumeration for possible media types:
+     http://msdn.microsoft.com/en-us/library/windows/desktop/aa366217(v=vs.85).aspx  
    .Notes 
     NAME:  New-IsoFile  
     AUTHOR: Chris Wu 
