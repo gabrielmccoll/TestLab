@@ -1,3 +1,54 @@
+
+
+
+
+##########EXTRA THE ISO #################
+$isoloc ="C:\ISOs\6mnth2016.ISO"
+$isoOut ="C:\ISOs\6mnth2016ext"
+
+start-process -FilePath "$env:ProgramFiles\7-zip\7z.exe" `
+-ArgumentList "x $isoloc -o$isoOut -y"
+
+########################EDIT THE XML ##########################
+
+#https://blogs.msdn.microsoft.com/sonam_rastogi_blogs/2014/05/14/update-xml-file-using-powershell/
+##where's the master and where will you copy to
+$path = "$env:USERPROFILE\TestLab\Autounattendmaster.xml"
+$newxmlfile = "$env:USERPROFILE\TestLab\Autounattend.xml"
+
+
+$Administrator = "TLAdmin2GM"
+$Password = "TLAdmin3Pass!"
+$Organization = "TestLandoo"
+$Owner = "Boss"
+$ComputerName = "PCname1edited"
+
+
+$xml = [xml](Get-Content $path)
+$xmlcomponent = $xml.unattend.settings.component
+
+
+$xmlcomponent.autologon.password.value = "$Password"
+$xmlcomponent.getelementsbytagname("Username").innertext = $Administrator
+$xmlcomponent.getelementsbytagname("Name").innertext = $Administrator  
+$xmlcomponent.getelementsbytagname("FullName").innertext = $Administrator
+$xmlcomponent.getelementsbytagname("RegisteredOrganization").innertext = "$organization"
+$xmlcomponent.getelementsbytagname("RegisteredOwner").innertext = "$owner"
+$xmlcomponent.getelementsbytagname("ComputerName").innertext = "$computername"
+
+$xmlcomponent
+$xml.Save($newxmlfile)
+
+
+####################CREATE THE ISO ################################
+# where the files from the iso were extracted to
+$filesforiso = "$isoOut"
+
+$newiso = "C:\ISOs\6mnth2016GMMOD.iso"
+
+
+
+
 #this function isnt mine tho I may edited it a LITTLE from the original . all credit to original author
 #https://gallery.technet.microsoft.com/scriptcenter/New-ISOFile-function-a8deeffd
 
@@ -114,7 +165,6 @@ public class ISOFile  
 
 
 
-$filesforiso = "C:\ISOs\6mnth2016ext"
-$newiso = "C:\ISOs\6mnth2016GMMOD.iso"
+
 
 dir $filesforiso | New-IsoFile -Path $newiso -force -BootFile "$filesforiso\boot\etfsboot.com" -Media DISK -Title "Win2016mod6mo"

@@ -23,7 +23,7 @@ New-VMSwitch -ComputerName $Hypervisor -Name $SwitchName -NetAdapterName $networ
 $Domainname = "Testlandia.com"
 $DomainPre = "TL-"
 $OnPremSuf = "-OnPr"
-$ServerOSIso =  "C:\ISOs\Server2012rt26month.ISO" #location of your Server2016 (or 2012R2)iso
+$ServerOSIso =  "C:\ISOs\6mnth2016GMMOD.ISO" #location of your Server2016 (or 2012R2)iso
 $VMandVHDlocation = "C:\VirtualMachines\" #where you're going to store the VMsand their Harddisks
 $generation = "1" #this is to ensure compatability with Azure
 #example PC name TL-DC1-OnPr the suffix is to differentiate from on-premises/local and cloud hosted
@@ -59,3 +59,4 @@ Set-VMDvdDrive -VMName $vmname -Path $ServerOSIso -ComputerName $Hypervisor
 Get-VMIntegrationService -ComputerName $Hypervisor -VMName $vmname | Enable-VMIntegrationService
 Start-VM -VMName $vmname -ComputerName $Hypervisor
 
+ 

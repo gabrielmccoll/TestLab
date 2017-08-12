@@ -26,28 +26,29 @@ $xmlcomponent.getelementsbytagname("ProductKey").innertext = "333" THIS WORKS, c
 #>
 
 
-
-$ProductKey = "GGGGN-FT8W3-Y4M27-J84CP-Q3VJ9"
-$Administrator = "TLAdmin2"
+$Administrator = "TLAdmin2GM"
 $Password = "TLAdmin3Pass!"
-$Organization = "TestLandia2"
+$Organization = "TestLandoo"
 $Owner = "Boss"
-$ComputerName = "PCname1"
+$ComputerName = "PCname1edited"
 
-$path = "$env:USERPROFILE\TestLab\Autounattendtest.xml"
-$newfile = "$env:USERPROFILE\TestLab\Autounattendtest2.xml"
+$path = "$env:USERPROFILE\TestLab\Autounattendmaster.xml"
+$newfile = "$env:USERPROFILE\TestLab\Autounattend.xml"
 $xml = [xml](Get-Content $path)
 $xmlcomponent = $xml.unattend.settings.component
 
 
-$xmlcomponent.item(8).autologon.username = $Administrator
-$xmlcomponent.item(8).autologon.password.value = "$Password"
-$xmlcomponent.item(8).RegisteredOrganization = $Organization
-$xmlcomponent.item(8).RegisteredOwner = $Owner
-$xmlcomponent.item(7).ProductKey = $ProductKey
-$xmlcomponent.item(7).ComputerName = $ComputerName
+#$xmlcomponent.autologon.username #= $Administrator
+$xmlcomponent.autologon.password.value = "$Password"
+$xmlcomponent.getelementsbytagname("Username").innertext = $Administrator
+$xmlcomponent.getelementsbytagname("Name").innertext = $Administrator  
+$xmlcomponent.getelementsbytagname("FullName").innertext = $Administrator
+$xmlcomponent.getelementsbytagname("RegisteredOrganization").innertext = "$organization"
+$xmlcomponent.getelementsbytagname("RegisteredOwner").innertext = "$owner"
+$xmlcomponent.getelementsbytagname("ComputerName").innertext = "$computername"
 
+$xmlcomponent
 $xml.Save($newfile)
 
 
-$xmlcomponent.item["RegisteredOwner"]
+

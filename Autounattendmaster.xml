@@ -8,7 +8,7 @@
             <SetupUILanguage>
                 <UILanguage>en-US</UILanguage>
             </SetupUILanguage>
-            <InputLocale>0409:00000409</InputLocale>
+            <InputLocale>0c09:00000409</InputLocale>
             <SystemLocale>en-US</SystemLocale>
             <UILanguage>en-US</UILanguage>
             <UILanguageFallback>en-US</UILanguageFallback>
@@ -17,13 +17,28 @@
         <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" 
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ImageInstall>
+                <OSImage>
+                    <InstallTo>
+                        <DiskID>0</DiskID>
+                        <PartitionID>2</PartitionID>
+                    </InstallTo>
+                </OSImage>
+            </ImageInstall>
+            <UserData>
+                <AcceptEula>true</AcceptEula>
+                <FullName>TLAdmin</FullName>
+                <Organization>Testlandia</Organization>
+            
+            </UserData>
+            <EnableFirewall>true</EnableFirewall>
             <DiskConfiguration>
                 <Disk wcm:action="add">
                     <CreatePartitions>
                         <CreatePartition wcm:action="add">
                             <Order>1</Order>
+                            <Size>350</Size>
                             <Type>Primary</Type>
-                            <Size>100</Size>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Extend>true</Extend>
@@ -33,41 +48,24 @@
                     </CreatePartitions>
                     <ModifyPartitions>
                         <ModifyPartition wcm:action="add">
-                            <Active>true</Active>
                             <Format>NTFS</Format>
-                            <Label>System Reserved</Label>
+                            <Label>System</Label>
                             <Order>1</Order>
                             <PartitionID>1</PartitionID>
                             <TypeID>0x27</TypeID>
                         </ModifyPartition>
                         <ModifyPartition wcm:action="add">
-                            <Active>true</Active>
-                            <Format>NTFS</Format>
-                            <Label>OS</Label>
-                            <Letter>C</Letter>
                             <Order>2</Order>
                             <PartitionID>2</PartitionID>
+                            <Letter>C</Letter>
+                            <Label>OS</Label>
+                            <Format>NTFS</Format>
                         </ModifyPartition>
                     </ModifyPartitions>
                     <DiskID>0</DiskID>
                     <WillWipeDisk>true</WillWipeDisk>
                 </Disk>
             </DiskConfiguration>
-            <ImageInstall>
-                <OSImage>
-                    <InstallTo>
-                        <DiskID>0</DiskID>
-                        <PartitionID>2</PartitionID>
-                    </InstallTo>
-                    <InstallToAvailablePartition>false</InstallToAvailablePartition>
-                </OSImage>
-            </ImageInstall>
-            <UserData>
-                <AcceptEula>true</AcceptEula>
-                <FullName>TLAdmin</FullName>
-                <Organization>TestLandia</Organization>
-            </UserData>
-            <EnableFirewall>true</EnableFirewall>
         </component>
     </settings>
     <settings pass="offlineServicing">
@@ -97,7 +95,7 @@
         <component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" 
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <SkipAutoActivation>true</SkipAutoActivation>
+            <SkipAutoActivation>false</SkipAutoActivation>
         </component>
         <component name="Microsoft-Windows-SQMApi" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" 
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" 
@@ -107,8 +105,7 @@
         <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" 
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ComputerName>-PC</ComputerName>
-            <ProductKey>W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9</ProductKey>
+            <ComputerName>TL-DC1-OnPr</ComputerName>
         </component>
     </settings>
     <settings pass="oobeSystem">
@@ -117,7 +114,7 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <AutoLogon>
                 <Password>
-                    <Value>TLAdminPass1!</Value>
+                    <Value>TLpassword1!</Value>
                     <PlainText>true</PlainText>
                 </Password>
                 <Enabled>false</Enabled>
@@ -125,45 +122,33 @@
             </AutoLogon>
             <OOBE>
                 <HideEULAPage>true</HideEULAPage>
+                <HideLocalAccountScreen>true</HideLocalAccountScreen>
                 <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
                 <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
                 <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
                 <NetworkLocation>Work</NetworkLocation>
                 <ProtectYourPC>1</ProtectYourPC>
-                <SkipUserOOBE>true</SkipUserOOBE>
                 <SkipMachineOOBE>true</SkipMachineOOBE>
+                <SkipUserOOBE>true</SkipUserOOBE>
             </OOBE>
             <UserAccounts>
+                <AdministratorPassword>
+                    <Value>TLpassword1!</Value>
+                    <PlainText>true</PlainText>
+                </AdministratorPassword>
                 <LocalAccounts>
                     <LocalAccount wcm:action="add">
-                        <Password>
-                            <Value>TLAdminPass1!</Value>
-                            <PlainText>true</PlainText>
-                        </Password>
-                        <Description></Description>
+                        <Description>TLAdmin</Description>
                         <DisplayName>TLAdmin</DisplayName>
                         <Group>Administrators</Group>
                         <Name>TLAdmin</Name>
                     </LocalAccount>
                 </LocalAccounts>
             </UserAccounts>
-            <RegisteredOrganization>TestLandia</RegisteredOrganization>
+            <RegisteredOrganization>Testlandia</RegisteredOrganization>
             <RegisteredOwner>TLAdmin</RegisteredOwner>
             <DisableAutoDaylightTimeSet>false</DisableAutoDaylightTimeSet>
             <TimeZone>UTC</TimeZone>
-            <VisualEffects>
-                <SystemDefaultBackgroundColor>21</SystemDefaultBackgroundColor>
-            </VisualEffects>
-        </component>
-        <component name="Microsoft-Windows-ehome-reg-inf" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="NonSxS" 
-            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" 
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <RestartEnabled>true</RestartEnabled>
-        </component>
-        <component name="Microsoft-Windows-ehome-reg-inf" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="NonSxS" 
-            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" 
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <RestartEnabled>true</RestartEnabled>
         </component>
     </settings>
 </unattend>
