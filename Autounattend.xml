@@ -118,7 +118,7 @@
         </AdministratorPassword>
         <LocalAccounts>
           <LocalAccount wcm:action="add">
-            <Description>TLAdmin</Description>
+            <Description>TLAdmin2GM</Description>
             <DisplayName>TLAdmin</DisplayName>
             <Group>Administrators</Group>
             <Name>TLAdmin2GM</Name>

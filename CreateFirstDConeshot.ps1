@@ -1,8 +1,8 @@
 
 
 ##########EXTRACT THE ISO #################
-$isoloc ="C:\ISOs\6mnth2016.ISO"
-$isoOut ="C:\ISOs\6mnth2016ext"
+$isoloc ="C:\ISOs\6mnth2016.ISO"   ##where the iso currently is
+$isoOut ="C:\ISOs\6mnth2016ext"  ##where you'll extract the iso too
 
 start-process -Wait -FilePath "$env:ProgramFiles\7-zip\7z.exe" `
 -ArgumentList "x $isoloc -o$isoOut -y"
@@ -11,8 +11,8 @@ start-process -Wait -FilePath "$env:ProgramFiles\7-zip\7z.exe" `
 
 #https://blogs.msdn.microsoft.com/sonam_rastogi_blogs/2014/05/14/update-xml-file-using-powershell/
 ##where's the master and where will you copy to
-$path = "$env:USERPROFILE\TestLab\Autounattendmaster.xml"
-$newxmlfile = "$env:USERPROFILE\TestLab\Autounattend.xml"
+$path = "$env:USERPROFILE\TestLab\Autounattendmaster.xml" ##This is setup to work with Server 2016. Don't mod it.
+$newxmlfile = "$env:USERPROFILE\TestLab\Autounattend.xml"  ##you can change this
 
 
 $Administrator = "TLAdmin2GM"
@@ -27,9 +27,12 @@ $xmlcomponent = $xml.unattend.settings.component
 
 
 $xmlcomponent.autologon.password.value = "$Password"
+$xmlcomponent.useraccount.AdministratorPassword.value = "$Password"
 $xmlcomponent.getelementsbytagname("Username").innertext = $Administrator
 $xmlcomponent.getelementsbytagname("Name").innertext = $Administrator  
 $xmlcomponent.getelementsbytagname("FullName").innertext = $Administrator
+$xmlcomponent.getelementsbytagname("Description").innertext = $Administrator
+$xmlcomponent.getelementsbytagname("Displayname").innertext = $Administrator
 $xmlcomponent.getelementsbytagname("RegisteredOrganization").innertext = "$organization"
 $xmlcomponent.getelementsbytagname("RegisteredOwner").innertext = "$owner"
 $xmlcomponent.getelementsbytagname("ComputerName").innertext = "$computername"
