@@ -7,7 +7,7 @@ $labhotfix = "$labfolder\hotfixes"
 $labiso = "$labfolder\isos"
 
 Set-LabHostDefault -ConfigurationPath $labconfig -HotfixPath $labhotfix -IsoPath $labiso
-
+ 
 Start-LabHostConfiguration -Verbose
 
 #invoke-labresourcedownload -mediaid 2016_x64_datacenter_en_eval
