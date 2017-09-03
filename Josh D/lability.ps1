@@ -37,7 +37,10 @@ cd c:\Lability\Configurations
 
 #This next part generates the MOFs, the Pull command is from loading the ps1 file into memory. You can type "code .\DSCPullServerLab.ps1" to look at it
 #code .\DSCPullServerLab.psd1 will let you edit the config parameters needed if changed media type above
-Pull -ConfigurationData .\DSCPullServerLab.psd1 -OutputPath C:\Lability\Configurations\
+Pull1 -ConfigurationData .\DSCPullServerLab.psd1 -OutputPath C:\Lability\Configurations\
 
 #now build it using the mof and psd , I had to remove the environement prefix from the .psd
-Start-LabConfiguration -ConfigurationData .\DSCPullServerLab.psd1 -Verbose
+Start-LabConfiguration -ConfigurationData .\DSCPullServerLab.psd1 -Verbose -Force
+
+#might need this but doesn't fix it 
+#Set-LabHostDefault -DismPath "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\DISM\Microsoft.Dism.PowerShell.dll"
